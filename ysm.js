@@ -110,8 +110,31 @@ let ysmkey = ''
   .finally(() => $.done())
 //云扫码数据获取
 
+//生成从minNum到maxNum的随机数
+function randomNum(minNum, maxNum) {
+  switch (arguments.length) {
+    case 1:
+      return parseInt(Math.random() * minNum + 1, 10);
+      break;
+    case 2:
+      return parseInt(Math.random() * ( maxNum - minNum + 1 ) + minNum, 10);
+      //或者 Math.floor(Math.random()*( maxNum - minNum + 1 ) + minNum );
+      break;
+    default:
+      return 0;
+      break;
+  }
+}
 
-function ysmck() {
+
+function ysmck() {  
+  if ($request.url.indexOf("withdraw") > -1) {
+ const ysmtx = $request.body
+  if(ysmtx)     $.setdata(ysmtx,`ysmtx${status}`)
+    $.log(ysmtx)
+$.msg($.name,"",'云扫码'+`${status}` +'微信提现数据获取成功！')
+    return;
+   }
    if ($request.url.indexOf("v1/task") > -1) {
  const ysmurl = $request.url
   if(ysmurl)     $.setdata(ysmurl,`ysmurl${status}`)
@@ -129,12 +152,6 @@ if ($request.url.indexOf("add_gold") > -1) {
   if(ysm2body)     $.setdata(ysm2body,`ysm2body${status}`)
     $.log(ysm2body)
 $.msg($.name,"",'云扫码'+`${status}` +'提交任务数据获取成功！')
-   }
-  if ($request.url.indexOf("withdraw") > -1) {
- const ysmtx = $request.body
-  if(ysmtx)     $.setdata(ysmtx,`ysmtx${status}`)
-    $.log(ysmtx)
-$.msg($.name,"",'云扫码'+`${status}` +'微信提现数据获取成功！')
    }
 }
 
@@ -155,7 +172,7 @@ let url = {
         if(result.data.last_gold >= 3000){
     console.log('\n检测到当前金额可提现，前去执行提现')                
 await ysmdh();
-}       await $.wait(2000);
+}       await $.wait(randomNum(2000,6000));
         await ysm1();
         
 } else {
@@ -189,7 +206,7 @@ let url = {
     //const result = JSON.parse(data)
        console.log('\n云扫码key提交成功,即将开始领取阅读奖励') 
        
-        await $.wait(8000);
+        await $.wait(randomNum(8000,20000));
         await ysm3(); 
        
         }} catch (e) {
@@ -239,7 +256,7 @@ let url = {
 } else {
         ysmkey = result.data.link
         await ysm2();
-        await $.wait(1000);
+        await $.wait(randomNum(1000,3000));
 }
         
 } else {
