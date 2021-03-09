@@ -193,10 +193,10 @@ let url = {
       $.get(url, async (err, resp, data) => {
         try {
          //console.log('\n开始重定向跳转，跳转返回结果：'+data)
-        if (err) {
-          console.log(`\n${$.name} 🧼来自肥皂的提示:key请求提交失败,尝试重新执行任务`)
-     await ysm1();
-        } else {
+        //if (err) {
+        //  console.log(`\n${$.name} 🧼来自肥皂的提示:key请求提交失败,尝试重新执行任务`)
+     //await ysm1();
+       // } else {
            
     //const result = JSON.parse(data)
        console.log('\n云扫码key提交成功,10秒后开始领取阅读奖励') 
@@ -204,7 +204,8 @@ let url = {
         await $.wait(9000);
         await ysm3(); 
        
-        }} catch (e) {
+        //}
+      } catch (e) {
           //$.logErr(e, resp);
         } finally {
           resolve()
