@@ -34,24 +34,24 @@ https://raw.githubusercontent.com/age174/-/main/feizao.box.json
 
 [rewrite_local]
 #66阅读
-http://v1uxnzj.cn/v4/user/get_user_task? url script-request-header https://raw.githubusercontent.com/age174/-/main/66yd.js
+http://skr8ewe.cn/v4/user/get_user_task? url script-request-header https://raw.githubusercontent.com/age174/-/main/66yd.js
 
 
 
 #loon
-http://v1uxnzj.cn/v4/user/get_user_task? script-path=https://raw.githubusercontent.com/age174/-/main/66yd.js, requires-header=true, timeout=10, tag=66阅读
+http://skr8ewe.cn/v4/user/get_user_task? script-path=https://raw.githubusercontent.com/age174/-/main/66yd.js, requires-header=true, timeout=10, tag=66阅读
 
 
 
 #surge
 
-66阅读 = type=http-request,pattern=http://v1uxnzj.cn/v4/user/get_user_task?,requires-header=1,max-size=0,script-path=https://raw.githubusercontent.com/age174/-/main/66yd.js,script-update-interval=0
+66阅读 = type=http-request,pattern=http://skr8ewe.cn/v4/user/get_user_task?,requires-header=1,max-size=0,script-path=https://raw.githubusercontent.com/age174/-/main/66yd.js,script-update-interval=0
 
 
 
 
 [MITM]
-hostname = v1uxnzj.cn
+hostname = v1uxnzj.cn,skr8ewe.cn
 
 
 */
