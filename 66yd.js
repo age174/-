@@ -122,7 +122,7 @@ tid =llydurl.match(/token=(.*?)&/)[1]
 //$.log(tid)
 
 let url = {
-        url : `http://v1uxnzj.cn/v4/user/get_user_task?uid=${uid}&login_token=${tid}&t=${times}`,
+        url : `http://skr8ewe.cn/v4/user/get_user_task?uid=${uid}&login_token=${tid}&t=${times}`,
         headers : JSON.parse(llydhd),
        
 }
@@ -157,7 +157,7 @@ await llydwz();
 function llydyd(timeout = 0) {
   return new Promise((resolve) => {
 let url = {
-        url : "http://v1uxnzj.cn/v4/user/startTask",
+        url : "http://skr8ewe.cn/v4/user/startTask",
         headers : JSON.parse(llydhd),
         body : `uid=${uid}&login_token=${tid}&tid=${key}&time=${times}&url=${name}`,
 }
@@ -188,7 +188,7 @@ let url = {
 function llydtj(timeout = 0) {
   return new Promise((resolve) => {
 let url = {
-        url : "http://v1uxnzj.cn/v4/msg/task_type_statistics_count",
+        url : "http://skr8ewe.cn/v4/msg/task_type_statistics_count",
         headers : JSON.parse(llydhd),
         body : `uid=${uid}&login_token=${tid}&type=11&tid=${key}`,
 }
@@ -218,7 +218,7 @@ let url = {
 function llydrw(timeout = 0) {
   return new Promise((resolve) => {
 let url = {
-        url : "http://v1uxnzj.cn/v4/user/wxfinishTask",
+        url : "http://skr8ewe.cn/v4/user/wxfinishTask",
         headers : JSON.parse(llydhd),
         body : `uid=${uid}&login_token=${tid}&tid=${key}&time=${times}&url=${name}`,
 }
