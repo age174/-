@@ -134,7 +134,7 @@ key = key.urlKey
 time = parseInt((new Date).getTime() / 1e3)
 sign = md5(`<span>span.qianhe</span>${time}<span>span.qianhe</span>`)
 let url = {
-        url : `https://www.qliang2.com/read/v1/get_time_list`,
+        url : `https://www.qianhe9.com/read/v1/get_time_list`,
         headers : JSON.parse(qhydhd),
         body : `{"urlKey":"${key}","time":${time},"sign":"${sign}"}`,
 }
@@ -178,7 +178,7 @@ key = key.urlKey
 time = parseInt((new Date).getTime() / 1e3)
 sign = md5(`<span>span.qianhe</span>${time}<span>span.qianhe</span>`)
 let url = {
-        url : `https://www.mohe9.com/read/v1/get_time_list_task`,
+        url : `https://www.qianhe9.com/read/v1/get_time_list_task`,
         headers : JSON.parse(qhydhd),
         body : `{"urlKey":"${key}","time_id":${tid},"time":${time},"sign":"${sign}"}`,
 }
@@ -230,29 +230,26 @@ let t = {};
 	});
 
 uid = t.str_id
-t = uid[8] + "" + uid[10] + uid[5]
+//t = uid[8] + "" + uid[10] + uid[5]
 let o = Math.random().toString(36).substr(2)
 let url = {
-        url : 'https://www.mohe9.com/read/v1/get_click_task',
+        url : `https://www.qianhe9.com/read/v1/get_click_task?urlKey=${key}&task_id=${id}&type=1&str_id=${uid}&sign=${sign}&time=${time}`,
         headers : JSON.parse(qhydhd),
-        body : `{"urlKey":"${key}","task_id":${id},"type":1,"str_id":"${uid}","time":${time},"sign":"${sign}"}`,
 }
-      $.post(url, async (err, resp, data) => {
+      $.get(url, async (err, resp, data) => {
         try {
-    const result = JSON.parse(data)
 
-        if(result.code== 200){
-        let tk = result.data.token
+        if(resp.statusCode == 200){
+       // let tk = result.data.token
         //tk = tk[15] + "" + tk[20] + tk[12]
-        let s = randomRangec()
-        //console.log(s)
         let r = randomRangec()
-        let o = randomRangec()
-        let c = tk[3] + "" + tk[15] + tk[8] + tk[22] + tk[18]
-        let d = uid[12] + "" + r + uid[7] + c + uid[6]
-        let m = uid[3] + "" + uid[12] + uid[8] + uid[10] + tk[3] + tk[12] + tk[8] + tk[10]
-        let l = tk[15] + "" + m + tk[20] + o + tk[12]
-        strid = d + "" + s + l
+	let o = randomRangec()
+	let d = randomRangec()
+	let m = t.str_id[3] + "" + t.str_id[8] + t.str_id[22] + t.str_id[18] + t.str_id[10]
+        let c = t.str_id[12] + "" + o + t.str_id[7] + m + t.str_id[6]
+        let l = t.str_id[3] + "" + t.str_id[12] + t.str_id[8] + t.str_id[10] + t.str_id[3] + t.str_id[12] + t.str_id[5] + t.str_id[22]
+	let u = t.str_id[22] + "" + l + t.str_id[26] + d + t.str_id[12]
+        strid = c + "" + r + u
         //console.log(strid)
         console.log('\n千禾阅读提交任务成功')
         let waittime = Math.round(Math.random()*4000+4000)
@@ -281,7 +278,7 @@ key = key.urlKey
 time = parseInt((new Date).getTime() / 1e3)
 sign = md5(`<span>span.qianhe</span>${time}<span>span.qianhe</span>`)
 let url = {
-        url : `https://www.mohe9.com/read/v1/get_click_task`,
+        url : `https://www.qianhe9.com/read/v1/get_click_task`,
         headers : JSON.parse(qhydhd),
         body : `{"urlKey":"${key}","task_id":${id},"time":${times},"type":2,"str_id":"${strid}","time":${time},"sign":"${sign}"}`,
 }
