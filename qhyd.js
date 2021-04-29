@@ -51,7 +51,7 @@ https://www.*com/read/v1/get_time_list script-path=https://raw.githubusercontent
 千禾阅读任务重写 = type=http-request,pattern=https://www.*com/read/v1/get_time_list,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/age174/-/main/qhyd.js,script-update-interval=0
 
 [MITM]
-hostname = www.qianhe5.com,www.mohe9.com
+hostname = www.qianhe5.com,www.qianhe9.com
 
 */
 
@@ -178,7 +178,7 @@ key = key.urlKey
 time = parseInt((new Date).getTime() / 1e3)
 sign = md5(`<span>span.qianhe</span>${time}<span>span.qianhe</span>`)
 let url = {
-        url : `https://www.mohe9.com/read/v1/get_time_list_task`,
+        url : `https://www.qianhe9.com/read/v1/get_time_list_task`,
         headers : JSON.parse(qhydhd),
         body : `{"urlKey":"${key}","time_id":${tid},"time":${time},"sign":"${sign}"}`,
 }
@@ -191,7 +191,7 @@ let url = {
         name = result.data.list[0].title
         uid = result.data.list[0].user_url
         console.log(`\n千禾阅读获取任务列表成功,当前共有:${result.data.list.length}个任务\n当前任务ID:${id}\n任务名:${name}\n开始执行阅读`)
-        await $.wait(1000);
+        await $.wait(3000);
         await qhyd1();
 } else {
        console.log('\n千禾阅读获取任务列表失败'+result.message)
@@ -216,7 +216,7 @@ function randomRangec () {
 }
 
 //千禾阅读
-function qhyd1(timeout = 0) {
+function qhyd1(timeout = 1000) {
   return new Promise((resolve) => {
 key = JSON.parse(qhydbody)
 key = key.urlKey
@@ -230,30 +230,21 @@ let t = {};
 	});
 
 uid = t.str_id
-t = uid[8] + "" + uid[10] + uid[5]
-let o = Math.random().toString(36).substr(2)
 let url = {
-        url : 'https://www.mohe9.com/read/v1/get_click_task',
+        url : `https://www.qianhe9.com/read/v1/get_click_task?urlKey=${key}&task_id=${id}&type=1&str_id=${uid}&sign=${sign}&time=${time}`,
         headers : JSON.parse(qhydhd),
-        body : `{"urlKey":"${key}","task_id":${id},"type":1,"str_id":"${uid}","time":${time},"sign":"${sign}"}`,
 }
-      $.post(url, async (err, resp, data) => {
+      $.get(url, async (err, resp, data) => {
         try {
-    const result = JSON.parse(data)
-
-        if(result.code== 200){
-        let tk = result.data.token
-        //tk = tk[15] + "" + tk[20] + tk[12]
-        let s = randomRangec()
-        //console.log(s)
+        if(resp.statusCode == 200){
         let r = randomRangec()
-        let o = randomRangec()
-        let c = tk[3] + "" + tk[15] + tk[8] + tk[22] + tk[18]
-        let d = uid[12] + "" + r + uid[7] + c + uid[6]
-        let m = uid[3] + "" + uid[12] + uid[8] + uid[10] + tk[3] + tk[12] + tk[8] + tk[10]
-        let l = tk[15] + "" + m + tk[20] + o + tk[12]
-        strid = d + "" + s + l
-        //console.log(strid)
+	   let o = randomRangec()
+	   let d = randomRangec()
+	   let m = t.str_id[3] + "" + t.str_id[8] + t.str_id[22] + t.str_id[18] + t.str_id[10]
+	   let c = t.str_id[12] + "" + o + t.str_id[7] + m + t.str_id[6]
+	   let l = t.str_id[3] + "" + t.str_id[12] + t.str_id[8] + t.str_id[10] + t.str_id[3] + t.str_id[12] + t.str_id[5] + t.str_id[22]
+	   let u = t.str_id[22] + "" + l + t.str_id[26] + d + t.str_id[12]
+        strid = c + "" + r + u
         console.log('\n千禾阅读提交任务成功')
         let waittime = Math.round(Math.random()*4000+4000)
         console.log(`等待${waittime/1000}秒后去领取奖励`)
@@ -281,7 +272,7 @@ key = key.urlKey
 time = parseInt((new Date).getTime() / 1e3)
 sign = md5(`<span>span.qianhe</span>${time}<span>span.qianhe</span>`)
 let url = {
-        url : `https://www.mohe9.com/read/v1/get_click_task`,
+        url : `https://www.qianhe9.com/read/v1/get_click_task`,
         headers : JSON.parse(qhydhd),
         body : `{"urlKey":"${key}","task_id":${id},"time":${times},"type":2,"str_id":"${strid}","time":${time},"sign":"${sign}"}`,
 }
